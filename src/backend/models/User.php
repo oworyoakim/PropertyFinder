@@ -1,10 +1,10 @@
 <?php
 namespace App\Models;
 
-use Cartalyst\Sentinel\Users\EloquentUser;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends EloquentUser
+class User extends Model
 {
     use SoftDeletes;
     
@@ -13,12 +13,7 @@ class User extends EloquentUser
         'password',
         'last_name',
         'first_name',
-        'permissions',
-        'gender',
-        'dob',
         'phone',
-        'country',
-        'city',
         'address',
         'avatar'
     ];
@@ -31,9 +26,9 @@ class User extends EloquentUser
     public function fullName(){
         return $this->first_name.' '.$this->last_name;
     }
-    
-    public function challenges(){
-        return $this->hasMany(Challenge::class,'student_id','id');
+
+    public function properties(){
+        return $this->hasMany(Property::class);
     }
     
     

@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models\PropertyFinder;
+namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -37,5 +36,9 @@ class Property extends Model
 
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    public function taken_by(){
+        return $this->belongsTo(User::class,'taken_user_id');
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\PropertyFinder;
+namespace App\Http\Controllers;
 
-use App\Models\PropertyFinder\Property;
+use App\Models\Property;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Exception;
 
 class PropertyController extends Controller
@@ -25,16 +24,6 @@ class PropertyController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
@@ -42,52 +31,21 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        try {
+            $rules = [];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+            $validator = Validator::make($request->all(), $rules);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+            if ($validator->fails()) {
+                return response()->json($validator->errors(),500);
+            }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+            // register the user
+            $property = Property::create($request->all());
+            return response()->json($property);
+        } catch (Exception $ex) {
+            return response()->json('Server Error: ' . $ex->getMessage(), 500);
+        }
     }
 
     public function search($search_term)

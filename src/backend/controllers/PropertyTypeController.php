@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\PropertyFinder;
+namespace App\Http\Controllers;
 
-use App\Models\PropertyFinder\PropertyType;
+use App\Models\PropertyType;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class PropertyTypeController extends Controller
 {
@@ -15,17 +15,12 @@ class PropertyTypeController extends Controller
      */
     public function index()
     {
-        return PropertyType::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        try {
+            $types = PropertyType::all();
+            return response()->json($types);
+        } catch (Exception $ex) {
+            return response()->json('Server Error: ' . $ex->getMessage(), 500);
+        }
     }
 
     /**
@@ -45,42 +40,17 @@ class PropertyTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function getPropertyTypeById($id)
     {
-        //
+        try {
+            $type = PropertyType::find($id);
+            if (!$type) {
+                return response()->json('Server Error: Property type not found!', 404);
+            }
+            return response()->json($type);
+        } catch (Exception $ex) {
+            return response()->json('Server Error: ' . $ex->getMessage(), 500);
+        }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

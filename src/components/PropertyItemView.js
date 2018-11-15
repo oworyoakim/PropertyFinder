@@ -1,7 +1,6 @@
 'use strict'
 import React, { Component } from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { formatPrice } from '../utils';
 import { ListItem, Thumbnail, Left, Body, Right, Text } from 'native-base';
 
 class PropertyItemView extends Component {
