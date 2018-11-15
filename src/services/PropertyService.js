@@ -38,5 +38,17 @@ export default {
         }).catch((error) => {
             return Promise.reject(error.message);
         });
-    }
+    },
+    fetchAllPropertyTypes(){
+        let uri = apiUrl + '/property_types';
+        console.log(uri);
+        return fetch(uri).then((response) => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw Error(response.statusText);
+        }).catch((error) => {
+            return Promise.reject(error.message);
+        });
+    },
 };

@@ -46,6 +46,9 @@ class SearchScreen extends Component {
 
     onSearchButtonPressed = async () => {
         try {
+            if(this.state.searchString.trim() === ''){
+                return;
+            }
             this.setState({ isLoading: true, message: 'Loading...' });
             const results = await PropertyService.searchProperties(this.state.searchString)
             console.log(results);

@@ -48,7 +48,11 @@ class PropertyDetailsScreen extends Component {
                     <Body style={{ flex: 7.2, }}>
                         <Text style={{ color: '#fff' }}>{this.state.title}</Text>
                     </Body>
-                    <Right style={{ flex: 1.5, }} />
+                    <Right style={{ flex: 1.5, }}>
+                        <Button transparent>
+                            <Icon name='menu' />
+                        </Button>
+                    </Right>
                 </Header>
                 <Content>
                     <Card>

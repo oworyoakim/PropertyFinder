@@ -1,12 +1,12 @@
 'use strict';
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import HomeScreen from './HomeScreen';
 import PropertyDetailsScreen from './PropertyDetailsScreen';
 import SearchScreen from './SearchScreen';
 import PropertyFormScreen from './PropertyFormScreen';
 
-const RootStack = StackNavigator(
+const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     SearchProperty: SearchScreen,
